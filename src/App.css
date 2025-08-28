@@ -1,0 +1,60 @@
+.App {
+  text-align: center;
+  padding: 500;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+
+.responsive-width {
+  width: 50%; /* Takes 50% of the parent container's width */
+  max-width: 600px; /* Optional: limits maximum width */
+  min-width: 200px; /* Optional: ensures minimum width */
+
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.result {
+  font-size: 18px;
+  color: #333;
+  margin-top: 20px;
+}
