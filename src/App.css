@@ -4,9 +4,31 @@
   font-family: Arial, sans-serif;
 }
 
-h1 {
-  color: #000000;
+.title {
+  font-family: "Georgia";
+  line-height: 1.6;         /* Comfortable spacing between lines */
   margin-bottom: 20px;
+}
+
+.account-info {
+  font-family: "Georgia";
+  display: flex;            /* Center the paragraph container */
+  justify-content: center;  /* Horizontally center */
+  padding: 0rem;            /* Add some space around it */
+}
+
+.classic-paragraph {
+  display: flex;            /* Center the paragraph container */
+  justify-content: center;  /* Horizontally center */
+  padding: 0rem;            /* Add some space around it */
+}
+
+.classic-paragraph p {
+  max-width: 600px;         /* Keep lines readable like in a book */
+  line-height: 1.6;         /* Comfortable spacing between lines */
+  font-size: 1.1rem;        /* Slightly larger for readability */
+  text-align: justify;      /* Justified like printed books */
+  font-family: "Georgia", serif; /* Classic book font */
 }
 
 
@@ -57,4 +79,46 @@ button:hover {
   font-size: 18px;
   color: #333;
   margin-top: 20px;
+}
+
+.terminal-window {
+  width: 1000px;
+  margin: 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.6);
+  background-color: #1e1e1e; /* deeper, darker background */
+  color: #e0e0e0;            /* softer white text */
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  border: 1px solid #333;    /* subtle border like a frame */
+}
+
+.terminal-header {
+  background: #2a2a2a;       /* slightly lighter than body */
+  padding: 6px 10px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.terminal-header .btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.terminal-header .red { background: #ff5f56; }
+.terminal-header .yellow { background: #ffbd2e; }
+.terminal-header .green { background: #27c93f; }
+
+.terminal-body {
+  padding: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap; /* preserve spacing like a terminal */
+  font-size: 0.95rem;
+  background-color: #1e1e1e;
+  overflow-y: auto;
+  flex-grow: 1;  /* allow body to fill remaining space */
 }
