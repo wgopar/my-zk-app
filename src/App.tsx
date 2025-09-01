@@ -12,6 +12,13 @@ declare global {
   }
 }
 
+// Add global type for window.ethereum
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
+
 const MathContainer = styled.div`
   max-width: 100%;
   width: 100%;
@@ -22,6 +29,7 @@ const MathContainer = styled.div`
 
 const App: React.FC = () => {
 
+
   // Metmask Integration
   const [account, setAccount] = useState<string | null>(null);
   const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
@@ -31,6 +39,10 @@ const App: React.FC = () => {
   const [number1, setNumber1] = useState<number | ''>('');
   const [number2, setNumber2] = useState<number | ''>('');
   const [result, setResult] = useState<number | null>(null);
+
+  // States for zkSNARK proof and verification UI display
+  const [isProved, setIsProved] = useState<boolean | null>(null);
+  const [verifier_response, setVerifierResponse] = useState<any | null>(null);  
 
 // Initialize provider and check for MetaMask
   useEffect(() => {
@@ -116,13 +128,24 @@ const App: React.FC = () => {
   // Handle button click
   const calculateProduct = () => {
     if (typeof number1 === 'number' && typeof number2 === 'number') {
-      setResult(number1 * number2);
+      setIsProved(false);
       const verifierResponse = processInputs(number1.toString(), number2.toString())
-      const verifierResult = verifierResponse.then(result => {
-          console.log(result); // prints "Hello!" after 1 second
+      verifierResponse.then(verifier_response => {
+
+        if (!verifier_response || verifier_response.proof === null) {
+          alert('Please enter valid numbers');
+          return;
+        }
+        console.log("Verifier response ---> ", verifier_response);
+        console.log("resultProof", verifier_response.proof);
+        console.log("resultPublicSignals", verifier_response.publicSignals);
+        setIsProved(true); 
+        setVerifierResponse(verifier_response);
+        setResult(number1 * number2);
       })
     } else {
       setResult(null);
+      setIsProved(false)
       alert('Please enter valid numbers');
     }
   };
@@ -147,6 +170,9 @@ const App: React.FC = () => {
         </div>
       <div className="classic-paragraph">
         <p> 
+      {error && <p className="error">{error}</p>}
+      <div className="classic-paragraph">
+        <p> 
         This application is a demonstration of a zkSNARK verifier built with Circom and Solidity.
         Here the goal is to prove to someone that we know two numbers <InlineMath math="a" /> and <InlineMath math="b" /> (i.e. factorization) such that,
         </p>
@@ -155,7 +181,8 @@ const App: React.FC = () => {
       <MathContainer>
       <BlockMath math="a \cdot b = N " />
       </MathContainer>
-
+        </p>
+      </div>
       <div className="classic-paragraph">
         <p>
         Enter two numbers below and our zkSNARK-powered Solidity verifier, will prove that we know the factorization of <InlineMath math="N"/> without revealing the numbers to the verifier securely and privately.
@@ -178,6 +205,30 @@ const App: React.FC = () => {
         <p className="result"> <InlineMath math="N" /> = {result}</p>
         )}
         <button onClick={calculateProduct}>Prove using Solidity Verifier</button>
+        {isProved === true && (
+          <div className="classic-paragraph">
+          <p>Verifier Contract Response:  {JSON.stringify(verifier_response.contractResponse)} ✅</p>
+          </div>
+        )}
+        {isProved === true && (
+          <div className="terminal-window">
+          <div className="terminal-header">
+            <span className="btn red"></span>
+            <span className="btn yellow"></span>
+            <span className="btn green"></span>
+          </div>
+          <div className="terminal-body">
+            <p>$ echo Calculated Witness</p>
+            <p>{JSON.stringify(verifier_response.wc)}</p>
+            <p>$ echo publicSignals</p>
+            <p>{JSON.stringify(verifier_response.publicSignals, null, 0)}</p>
+            <p>$ echo proof</p>
+            <p>{JSON.stringify(verifier_response.proof, null, 0)}</p>
+                        
+          </div>
+        </div>
+        )}
+
       </div>
       <a href="https://github.com/wgopar/my-zk-app" target="_blank" rel="noopener noreferrer">Application Github (my-zk-app) </a> - React Front End and integration with Solidity Deployed Verifier<br />
       <a href="https://github.com/wgopar/zk-prototype" target="_blank" rel="noopener noreferrer">Circuit Creation Github</a> - Circuit Generation, Solidity Verifier Creation and Deployment with Hardhat
