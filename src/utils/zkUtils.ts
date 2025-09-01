@@ -1,7 +1,6 @@
 
 import { Buffer } from 'buffer';
 import * as snarkjs from "snarkjs";
-<<<<<<< HEAD
 // @ts-ignore: untyped module
 import builder from "./witness_calculator.js";
 import { getVerifierContract } from './contractHelper';
@@ -17,17 +16,10 @@ export async function processInputs (a: string, b: string): Promise<{
     _n: any
 }> {
 
-=======
-import builder from "./witness_calculator.js";
-import { getVerifierContract } from './contractHelper';
-
-export async function processInputs (a: string, b: string): Promise<string> {
->>>>>>> 1aaea00695c21b30ab7d923ef86ee18bae541a33
     
     const numA = parseInt(a);
     const numB = parseInt(b);
     if (isNaN(numA) || isNaN(numB)) {
-<<<<<<< HEAD
         return {
             contractResponse: false,
             proof: null,
@@ -38,9 +30,6 @@ export async function processInputs (a: string, b: string): Promise<string> {
             _c: null,
             _n: null
         };
-=======
-        return 'Please enter valid numbers';
->>>>>>> 1aaea00695c21b30ab7d923ef86ee18bae541a33
     }
     
     const inputs = { a: numA, b: numB };
@@ -75,9 +64,5 @@ export async function processInputs (a: string, b: string): Promise<string> {
     const verifierContract = await getVerifierContract();
     const contractResponse = await verifierContract.verifyProof(_a, _b, _c, _n);
 
-<<<<<<< HEAD
     return { contractResponse, proof, publicSignals, argv, _a, _b, _c, _n };
-=======
-    return contractResponse;
->>>>>>> 1aaea00695c21b30ab7d923ef86ee18bae541a33
 };

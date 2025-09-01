@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import React, { useState, useEffect } from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import { ethers } from 'ethers'; 
-import { ethers } from 'ethers'; 
 import styled from 'styled-components';
-import { processInputs } from './utils/zkUtils';
 import { processInputs } from './utils/zkUtils';
 import './App.css';
 
@@ -31,11 +28,6 @@ const MathContainer = styled.div`
 `;
 
 const App: React.FC = () => {
-
-  // Metmask Integration
-  const [account, setAccount] = useState<string | null>(null);
-  const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
-  const [error, setMessage] = useState<string | null>(null);
 
 
   // Metmask Integration
@@ -161,7 +153,6 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <h1 className="title">
-      <h1 className="title">
         my-zk-app
       </h1>      
       {!account ? (
@@ -179,19 +170,7 @@ const App: React.FC = () => {
         </div>
       <div className="classic-paragraph">
         <p> 
-      {!account ? (
-        <button onClick={connectToMetaMask}>Connect MetaMask to Sepolia Network</button>
-      ) : (
-        <div className="account-info">
-          <p>Account connected to Sepolia: {account}</p>
-        </div>
-      )}
       {error && <p className="error">{error}</p>}
-      <div className="classic-paragraph">
-        <p>
-        Groth16 zkSNARKs are a type of zero-knowledge proof that allows one party (the prover) to prove to another party (the verifier) that they know a value (or values) without revealing any information about the value itself. This is achieved through complex mathematical constructs that ensure the proof is both sound (i.e., a false statement cannot be proven true) and zero-knowledge (i.e., no information about the value is revealed).
-        </p>
-        </div>
       <div className="classic-paragraph">
         <p> 
         This application is a demonstration of a zkSNARK verifier built with Circom and Solidity.
@@ -203,16 +182,6 @@ const App: React.FC = () => {
       <BlockMath math="a \cdot b = N " />
       </MathContainer>
         </p>
-      </div>
-
-      <MathContainer>
-      <BlockMath math="a \cdot b = N " />
-      </MathContainer>
-
-      <div className="classic-paragraph">
-        <p>
-        Enter two numbers below and our zkSNARK-powered Solidity verifier, will prove that we know the factorization of <InlineMath math="N"/> without revealing the numbers to the verifier securely and privately.
-        </p>      
       </div>
       <div className="classic-paragraph">
         <p>
@@ -232,7 +201,6 @@ const App: React.FC = () => {
           onChange={handleNumber2Change}
           placeholder="Enter second number"
         />
-        {result !== null && (
         {result !== null && (
         <p className="result"> <InlineMath math="N" /> = {result}</p>
         )}
