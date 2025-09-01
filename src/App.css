@@ -1,0 +1,82 @@
+.App {
+  text-align: center;
+  padding: 500;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-family: "Georgia";
+  line-height: 1.6;         /* Comfortable spacing between lines */
+  margin-bottom: 20px;
+}
+
+.account-info {
+  font-family: "Georgia";
+  display: flex;            /* Center the paragraph container */
+  justify-content: center;  /* Horizontally center */
+  padding: 0rem;            /* Add some space around it */
+}
+
+.classic-paragraph {
+  display: flex;            /* Center the paragraph container */
+  justify-content: center;  /* Horizontally center */
+  padding: 0rem;            /* Add some space around it */
+}
+
+.classic-paragraph p {
+  max-width: 600px;         /* Keep lines readable like in a book */
+  line-height: 1.6;         /* Comfortable spacing between lines */
+  font-size: 1.1rem;        /* Slightly larger for readability */
+  text-align: justify;      /* Justified like printed books */
+  font-family: "Georgia", serif; /* Classic book font */
+}
+
+
+.responsive-width {
+  width: 50%; /* Takes 50% of the parent container's width */
+  max-width: 600px; /* Optional: limits maximum width */
+  min-width: 200px; /* Optional: ensures minimum width */
+
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.result {
+  font-size: 18px;
+  color: #333;
+  margin-top: 20px;
+}
