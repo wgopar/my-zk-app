@@ -4,9 +4,31 @@
   font-family: Arial, sans-serif;
 }
 
-h1 {
-  color: #000000;
+.title {
+  font-family: "Georgia";
+  line-height: 1.6;         /* Comfortable spacing between lines */
   margin-bottom: 20px;
+}
+
+.account-info {
+  font-family: "Georgia";
+  display: flex;            /* Center the paragraph container */
+  justify-content: center;  /* Horizontally center */
+  padding: 0rem;            /* Add some space around it */
+}
+
+.classic-paragraph {
+  display: flex;            /* Center the paragraph container */
+  justify-content: center;  /* Horizontally center */
+  padding: 0rem;            /* Add some space around it */
+}
+
+.classic-paragraph p {
+  max-width: 600px;         /* Keep lines readable like in a book */
+  line-height: 1.6;         /* Comfortable spacing between lines */
+  font-size: 1.1rem;        /* Slightly larger for readability */
+  text-align: justify;      /* Justified like printed books */
+  font-family: "Georgia", serif; /* Classic book font */
 }
 
 
