@@ -218,8 +218,6 @@ const App: React.FC = () => {
             <span className="btn green"></span>
           </div>
           <div className="terminal-body">
-            <p>$ echo Calculated Witness</p>
-            <p>{JSON.stringify(verifier_response.wc)}</p>
             <p>$ echo publicSignals</p>
             <p>{JSON.stringify(verifier_response.publicSignals, null, 0)}</p>
             <p>$ echo proof</p>
@@ -230,8 +228,11 @@ const App: React.FC = () => {
         )}
 
       </div>
+
+      <div style={{ marginBottom: "20px" }}>
       <a href="https://github.com/wgopar/my-zk-app" target="_blank" rel="noopener noreferrer">Application Github (my-zk-app) </a> - React Front End and integration with Solidity Deployed Verifier<br />
       <a href="https://github.com/wgopar/zk-prototype" target="_blank" rel="noopener noreferrer">Circuit Creation Github</a> - Circuit Generation, Solidity Verifier Creation and Deployment with Hardhat
+      </div>
     </div>
   );
 };
